@@ -28,9 +28,9 @@
    ```bash
    git clone https://github.com/darshanrw/Orchestration_assignment3.git
 ## Starting the Services
-
-- Run docker-compose up --build
-
+   ```bash
+  Run docker-compose up --build
+  ```
 ## Accessing the Web Service on below address
 - http://localhost:81
 
@@ -38,6 +38,7 @@
 - Assignment 3 is successfully completed with all the best practices implied!!!!!!
 
 ## Stopping the Services
-- Run docker-compose down
-
+  ```bash
+  Run docker-compose down
+  ```
 
