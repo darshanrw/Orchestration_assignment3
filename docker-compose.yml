@@ -1,0 +1,27 @@
+version: '3.9' # Use the latest stable version for better features and compatibility
+services:
+  webservice:
+    build: ./webservice
+    container_name: webservice_app # Name of container
+    volumes:
+      - ./webservice:/app  # Mount the directory
+    networks:
+      - app_network  # Using custom network to manage how services communicate.
+    ports:
+      - "3000:3000"  # Exposing the service on port 3000
+
+  nginx_lb:
+    image: nginx:stable-alpine  # Use a lightweight and stable NGINX image
+    container_name: nginx_load_balancer  # Meaningful container name
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro  # Mount the load balancer configuration
+    ports:
+      - "81:81"  # Expose port 81 for external traffic
+    depends_on:
+      - webservice  # Ensure the load balancer starts after the webservice
+    networks:
+      - app_network  # Attach to the same network as the webservice
+    
+networks:
+  app_network:
+    driver: bridge  # Use a bridge network for service isolation
